@@ -19,9 +19,11 @@ module.exports = app => {
   app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
     res.set({ 'content-type': 'text/html; charset=utf-8' });
     res.end(popupTools.popupResponse(req.user));
-    res.redirect('/surveys');
   });
 
+  // app.get('/surveys', (req, res) => {
+  //   res.redirect('/surveys');
+  // });
   app.get('/api/logout', (req, res) => {
     req.logout();
     res.redirect('/');

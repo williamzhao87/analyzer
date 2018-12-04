@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Payments from './Payments';
 import popupTools from 'popup-tools';
+import { withRouter } from 'react-router';
+import { fetchUser } from '../actions';
 
 class Header extends Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   renderContent() {
     switch (this.props.auth) {
       case null:
@@ -13,18 +19,11 @@ class Header extends Component {
         return (
           <li>
             <a onClick={this.handleClick}>Login With Google</a>
-            {/* <a href="/auth/google">Login With Google</a> */}
           </li>
         );
       default:
         return [
           <li key="1">
-            <Payments />
-          </li>,
-          <li key="3" style={{ margin: '0 10px' }}>
-            Credits: {this.props.auth.credits}
-          </li>,
-          <li key="2">
             <a href="/api/logout">Logout</a>
           </li>
         ];
@@ -32,11 +31,12 @@ class Header extends Component {
   }
 
   handleClick() {
-    popupTools.popup('/auth/google', 'Google Login', {}, function(err, user) {
+    popupTools.popup('/auth/google', 'Google Login', {}, (err, user) => {
       if (err) {
         alert(err.message);
       } else {
-        // save the returned user in localStorage/cookie or something
+        this.props.history.push('/surveys');
+        this.props.fetchUser();
       }
     });
   }
@@ -46,7 +46,7 @@ class Header extends Component {
       <nav>
         <div className="nav-wrapper">
           <Link to={this.props.auth ? '/surveys' : '/'} className="left brand-logo">
-            Emaily
+            Emotive
           </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>
@@ -59,4 +59,9 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { fetchUser }
+  )(Header)
+);
