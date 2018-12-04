@@ -13,12 +13,12 @@ module.exports = (app, io) => {
     const encodedCredentials = new Buffer(`${keys.wweClientId}:${keys.wweClientSecret}`).toString('base64');
     const username = req.body.username;
     const password = req.body.password;
-
+    console.log('hello');
     request.post(
       `${keys.wweApiUrl}/auth/v3/oauth/token`,
       {
         headers: {
-          // 'x-api-key': keys.wweApiKey,
+          'x-api-key': keys.wweApiKey,
           'content-type': 'application/x-www-form-urlencoded',
           Authorization: `Basic ${encodedCredentials}`
         },
@@ -26,12 +26,13 @@ module.exports = (app, io) => {
           // client_id: keys.wweClientId,
           grant_type: 'client_credentials'
           // scope: '*',
-          // username: `wz\\SIP_5002`,
-          // password: 5002
+          // username: username,
+          // password: password
         },
         json: true
       },
       function(err, res2, body) {
+        console.log(body.access_token);
         if (res2.statusCode >= 300) {
           return res.status(401).send(body);
         }
@@ -45,9 +46,9 @@ module.exports = (app, io) => {
   }
 
   app.post('/wwe/login', (req, res) => {
-    if (storage.access_token === '') {
-      return login(req, res);
-    }
+    // if (storage.access_token === '') {
+    return login(req, res);
+    // }
     res.status(200).send({ Success: 'User already logged in' });
   });
 
@@ -57,6 +58,7 @@ module.exports = (app, io) => {
   });
 
   app.post('/wwe/initialize', (req, res) => {
+    console.log('hello3');
     if (storage.access_token) {
       return workspaceApi
         .initialize({ token: storage.access_token })
