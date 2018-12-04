@@ -1,4 +1,5 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
