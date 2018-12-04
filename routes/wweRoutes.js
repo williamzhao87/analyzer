@@ -82,7 +82,7 @@ module.exports = (app, io) => {
     res.status(401).send({ Error: 'User must be signed in' });
   });
 
-  app.get('/', (req, res) => {
+  app.get('/wwe', (req, res) => {
     res.send({ Status: "You've successfully called wwe!" });
   });
 
