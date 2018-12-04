@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "proxy": {
+    "/wwe/*": {
+      "target": "http://localhost:5100"
+    },
     "/auth/google": {
       "target": "http://localhost:5100"
     },

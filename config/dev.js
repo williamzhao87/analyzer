@@ -6,5 +6,9 @@ module.exports = {
   redirectDomain: 'http://localhost:3000',
   sendGridKey: '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',
   stripePublishableKey: 'pk_test_IVvtJFeettVOLCyNg5KjgorZ',
-  stripeSecretKey: 'sk_test_0nhUxmFu78ARdhTVUGhR4bxZ'
+  stripeSecretKey: 'sk_test_0nhUxmFu78ARdhTVUGhR4bxZ',
+  wweApiKey: '',
+  wweApiUrl: 'http://135.39.46.196:8095',
+  wweClientId: 'external_api_client',
+  wweClientSecret: 'secret'
 };

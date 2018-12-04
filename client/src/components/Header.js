@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import popupTools from 'popup-tools';
 import { withRouter } from 'react-router';
 import { fetchUser } from '../actions';
+import axios from 'axios';
 
 class Header extends Component {
   constructor() {
@@ -39,6 +40,7 @@ class Header extends Component {
         this.props.fetchUser();
       }
     });
+    axios.post('/wwe/login');
   }
 
   render() {
@@ -59,9 +61,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { fetchUser }
-  )(Header)
-);
+export default withRouter(connect(mapStateToProps, { fetchUser })(Header));
