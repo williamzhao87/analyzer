@@ -8,8 +8,10 @@ module.exports = {
   stripePublishableKey: 'pk_test_IVvtJFeettVOLCyNg5KjgorZ',
   stripeSecretKey: 'sk_test_0nhUxmFu78ARdhTVUGhR4bxZ',
   beyondVerbalApiKey: 'e05aff10-d23c-44e4-b6bc-1d2887017ee6',
-  wweApiKey: '',
-  wweApiUrl: 'http://135.39.46.196:8095',
+  wweApiKey: 'api_key',
+  wweApiUrl: 'http://135.39.46.196',
+  wwePort: '8090',
+  wweAuthPort: '8095',
   wweClientId: 'external_api_client',
   wweClientSecret: 'secret'
 };

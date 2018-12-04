@@ -7,10 +7,10 @@ import { fetchUser } from '../actions';
 import axios from 'axios';
 
 class Header extends Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
+  // constructor() {
+  //   super();
+  //   this.handleClick = this.handleClick.bind(this);
+  // }
 
   renderContent() {
     switch (this.props.auth) {
@@ -19,28 +19,33 @@ class Header extends Component {
       case false:
         return (
           <li>
-            <a onClick={this.handleClick}>Login With Google</a>
+            <a onClick={() => this.handleLogin()}>Login With Google</a>
           </li>
         );
       default:
         return [
           <li key="1">
-            <a href="/api/logout">Logout</a>
+            <a onClick={() => this.handleLogout()}>Logout</a>
           </li>
         ];
     }
   }
 
-  handleClick() {
+  handleLogin() {
     popupTools.popup('/auth/google', 'Google Login', {}, (err, user) => {
-      if (err) {
-        alert(err.message);
-      } else {
+      if (!err) {
         this.props.history.push('/surveys');
         this.props.fetchUser();
       }
     });
     axios.post('/wwe/login');
+  }
+
+  async handleLogout() {
+    await axios.post('/wwe/logout');
+    await axios.get('/api/logout');
+    this.props.history.push('/');
+    this.props.fetchUser();
   }
 
   render() {

@@ -11,6 +11,8 @@ module.exports = {
   beyondVerbalApiKey: process.env.BEYOND_VERBAL_API_KEY,
   wweApiKey: process.env.WWE_API_KEY,
   wweApiUrl: process.env.WWE_API_URL,
+  wweAuthPort: process.env.WWE_AUTH_PORT,
+  wwePort: process.env.WWE_PORT,
   wweClientId: process.env.WWE_CLIENT_ID,
   wweClientSecret: process.env.WWE_CLIENT_SECRET
 };

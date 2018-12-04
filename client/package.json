@@ -4,13 +4,13 @@
   "private": true,
   "proxy": {
     "/wwe/*": {
-      "target": "http://localhost:5100"
+      "target": "http://localhost:5201"
     },
     "/auth/google": {
-      "target": "http://localhost:5100"
+      "target": "http://localhost:5201"
     },
     "/api/*": {
-      "target": "http://localhost:5100"
+      "target": "http://localhost:5201"
     }
   },
   "dependencies": {
